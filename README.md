@@ -97,11 +97,11 @@ blastn application options:
 -out <filename>: Output mapping result filename.(blastn_short_result.txt)
 -db <database_name>: BLASTN database name.(db/CQ13)
 -evalue <value>: Expect value (E) for saving hits, usually use 1e-5, default value is 10.
--outfmt <string>: Set a specified output format.((outfmt 6)[#tabular_outformat_6])
+-outfmt <string>: Set a specified output format.(outfmt 6)
 -mt_mode 1 -num_threads <int>: Enable multi-threading by setting the -mt_mode to 1 (default value is 0). Then, specify the number of threads used with the "-num_threads" option(-num_threads 20).
 ```
 
-[### Tabular outformat 6]()
+### BLASTN Tabular Outformat 6
 
 
 
