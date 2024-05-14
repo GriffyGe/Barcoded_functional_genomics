@@ -41,7 +41,17 @@ Then, combine pair-end sequencing data into one FASTQ file.
 
 `cat example_read1.fq.gz example_rea21.fq.gz > example.fq.gz`
 
-## Get barcodes and FASTA files with transposon-truncated reads
+## Get barcodes and FASTA files with transposon-truncated reads(only genomic DNA remained)
+
+This step identifies barcodes and genomic DNA flanking the barcoded transposon accroding to the following model. Only reads with 17bp barcode and genomic DNA with length 15bp or more will be considered.
+
+`GTTCGAATTCNNNNNNNNNNNNNNNNNGAGCTCACTTGTGTATAAGAGTCAG`
+
+This model is designed as a result of the 3' end of our transposon. 
+
+- `GTTCGAATTC` is a 10bp sequence located upstream of the barcode on the transposon. 
+- `NNNNNNNNNNNNNNNNN` is the 17bp barcode.
+- `GAGCTCACTTGTGTATAAGAGTCAG` is the junction between barcode and genomic DNA.
 
 ### Input file
 
