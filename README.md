@@ -57,7 +57,7 @@ Then, combine pair-end sequencing data into one FASTQ file.
 
 # Example file
 
-An example file folder can be found in [<u>here</u>](.\Example_file).
+An example file folder can be found in [<u>here</u>](./Example_file/).
 
 # Reference
 
