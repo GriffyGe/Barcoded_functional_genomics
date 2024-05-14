@@ -47,23 +47,32 @@ This step identifies barcodes and genomic DNA flanking the barcoded transposon a
 
 `GTTCGAATTCNNNNNNNNNNNNNNNNNGAGCTCACTTGTGTATAAGAGTCAG`
 
-This model is designed as a result of the 3' end of our transposon. 
+This model is designed based on the 3' end of our transposon. 
 
 - `GTTCGAATTC` is a 10bp sequence located upstream of the barcode on the transposon. 
 - `NNNNNNNNNNNNNNNNN` is the 17bp barcode.
 - `GAGCTCACTTGTGTATAAGAGTCAG` is the junction between barcode and genomic DNA.
 
-### Input file
+**Helper Message**
 
-- FASTQ file processed by fastp
+Run `python get_bc_gdna.py -h` on Linux terminal
 
-### Run `get_bc_id_gdna_rm_tn.py` on example
+Helper massage is shown:
 
-`python get_bc_id_gdna_rm_tn.py out_read.fq.gz results/re_tn_R2.fq results/id_bc_gdna.txt`
+```
+usage: get_bc_gdna.py [-h] -i  -o_bc  -o_gdna
 
-### Output file
+Identify barcode and genomic DNA.
 
-- 
+optional arguments:
+  -h, --help  show this help message and exit
+  -i          Filename, Tn-Seq sequencing data processed by fastp.
+  -o_bc       Filename, an output table of readID and barcode.
+  -o_gdna     Filename, an output FASTQ file of genomic DNA flanking barcoded transposons.
+```
+Run `get_bc_gdna.py` on examlple (**Linux** terminal)
+
+`python .\Scripts\get_bc_gdna.py -i .\Example_file\example.fq.gz -o_bc .\Example_file\table_id_bc.txt -o_gdna .\Example_file\gdna.fq`
 
 # Example file
 
