@@ -35,11 +35,11 @@ The workflow consists of:
 
 This step processes sequencing data through quality control, trimming of adapters using fastp.
 
-`fastp -i Read1.fq.gz -I Read2.fq.gz -o out_Read1.fq.gz -O out_Read2.fq.gz -h fastp_report.html`
+`fastp -i Read1.fq.gz -I Read2.fq.gz -o example_read1.fq.gz -O example_read2.fq.gz -h fastp_report.html`
 
 Then, combine pair-end sequencing data into one FASTQ file.
 
-`cat out_Read1.fq.gz out_Read2.fq.gz > out_read.fq.gz`
+`cat example_read1.fq.gz example_rea21.fq.gz > example.fq.gz`
 
 ## Get barcodes and FASTA files with transposon-truncated reads
 
@@ -57,7 +57,7 @@ Then, combine pair-end sequencing data into one FASTQ file.
 
 # Example file
 
-An example file is packed and found in [<u>here</u>]().
+An example file folder can be found in [<u>here</u>](.\Example_file).
 
 # Reference
 
