@@ -5,9 +5,9 @@ import argparse
 import gzip
 
 parser = argparse.ArgumentParser(description='Identify barcode and genomic DNA.')
-parser.add_argument('-i', metavar='',type=str, required=True, help='Filename, Tn-Seq sequencing data processed by fastp.')
-parser.add_argument('-o_bc', metavar='', type=str, required=True, help='Filename, an output table of readID and barcode.')
-parser.add_argument('-o_gdna', metavar='', type=str, required=True, help='Filename, an output FASTQ file of genomic DNA flanking barcoded transposons.')
+parser.add_argument('-i', '--input', metavar='', type=str, required=True, help='Filename, Tn-Seq sequencing data processed by fastp.')
+parser.add_argument('-o_bc', '--output_barcode', metavar='', type=str, required=True, help='Filename, an output table of readID and barcode.')
+parser.add_argument('-o_gdna', '--output_gdna', metavar='', type=str, required=True, help='Filename, an output FASTQ file of genomic DNA flanking barcoded transposons.')
 args = parser.parse_args()
 
 def extract_barcode_gdna_ins(seq):
@@ -24,10 +24,10 @@ def extract_barcode_gdna_ins(seq):
         return None
 
 if __name__ == '__main__':
-    result_gdna = open(args.o_gdna, "a")
-    result_id_bc = open(args.o_bc, "a")
+    result_gdna = open(args.output_gdna, "a")
+    result_id_bc = open(args.output_barcode, "a")
 
-    with gzip.open(args.i, 'rt') as f:
+    with gzip.open(args.input, 'rt') as f:
         while True:
             read_id = f.readline().strip()
             if read_id:
