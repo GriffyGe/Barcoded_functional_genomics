@@ -160,7 +160,7 @@ optional arguments:
 
 Run `select_best_hit.py` on examlple (**Linux** terminal)
 
-`python .\Scripts\select_best_hit.py -i .\Example_file\blastn_short_result.txt -gt .\Example_file\gene_table.xlsx -o best_hit_match_gene_res.txt`
+`python .\Scripts\select_best_hit.py -i .\Example_file\blastn_short_result.txt -gt .\Example_file\gene_table.xlsx -o .\Example_file\best_hit_match_gene_res.txt`
 
 The following information will be printed on the terminal.
 ```
