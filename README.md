@@ -26,6 +26,7 @@ The workflow consists of:
 - BLAST
 - Python
 - R, Rstudio (R packages: `tidyverse`, `rio`, `plyr`)
+- Excel
 - Operating system: Linux
 - SSH tool: finalshell (optional, better to have if using remote server)
 
@@ -181,8 +182,21 @@ For pXAC64, the number of insertions located at:
 ```
 ## 1.5 Match barcodes with consistently-inserted genes
 
+This step mainly cantains three steps:
 
+- Provide barcodes with inserted genes using the mapping result.
+- Match each barcode with a unique mutated gene.
+  - Standards for consistently-inserted genes
+    - Type1: A Gene that all reads of a barcode map to.
+    - Type2: A Gene that is the primary mapping site of all reads of a barcode.
 
+      **Requirement for primary mapping location:** 
+      1. Matching time >= 10;
+      2. Matching percentage >= 75%;
+      3. P(Second most frequency mapping location) <= 1/8 * P(Primary mapping location)
+- Select central insertions.
+
+Run `match_barcode_gene.R` in **Rstudio**.
 
 # Example file
 
