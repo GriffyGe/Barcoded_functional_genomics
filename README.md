@@ -75,7 +75,7 @@ optional arguments:
 ```
 Run `get_bc_gdna.py` on examlple (**Linux** terminal)
 
-`python .\Scripts\get_bc_gdna.py -i .\Example_file\example.fq.gz -o_bc .\Example_file\table_id_bc.txt -o_gdna .\Example_file\gdna.fq`
+`python .\Scripts\get_bc_gdna.py -i .\Example_file\1.1_Pre-process\example.fq.gz -o_bc .\Example_file\1.2_Get_barcode_gdna\table_id_bc.txt -o_gdna .\Example_file\1.2_Get_barcode_gdna\gdna.fq`
 
 In order to perform blastn with FASTA file, **convert FASTQ file to FASTA file with SeqKit**.
 
@@ -91,7 +91,7 @@ This step maps the genomic DNA FASTA file to the [<u>Xac CQ13 reference genome</
 
 2. Perform BLASTN search against the database.
 
-`blastn -task blastn-short -query gdna.fa -db db/CQ13 -evalue 1e-5 -outfmt 6 -out blastn_short_result.txt -num_threads 20 -mt_mode 1`
+`blastn -task blastn-short -query gdna.fa -db db/CQ13 -evalue 1e-5 -outfmt 6 -out ./Example_file/1.3_Blastn-short/blastn_short_result.txt -num_threads 20 -mt_mode 1`
 
 blastn application options:
 ```
@@ -161,7 +161,7 @@ optional arguments:
 
 Run `select_best_hit.py` on examlple (**Linux** terminal)
 
-`python .\Scripts\select_best_hit.py -i .\Example_file\blastn_short_result.txt -gt .\Example_file\gene_table.xlsx -o .\Example_file\best_hit_match_gene_res.txt`
+`python .\Scripts\select_best_hit.py -i .\Example_file\1.3_Blastn-short\blastn_short_result.txt -gt .\Example_file\1.4_Select_best_hit_match_gene_info\gene_table.xlsx -o .\Example_file\1.4_Select_best_hit_match_gene_info\best_hit_match_gene_res.txt`
 
 The following information will be printed on the terminal.
 ```
