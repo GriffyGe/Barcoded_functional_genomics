@@ -4,14 +4,14 @@ This is an instruction for analyzing functional genome of *Xanthomonas citri* pv
 
 The workflow consists of:
 
-- Tn-Seq analysis
-    - Pre-process sequencing data.[`Fastp`]
-    - Get barcodes and FASTA files with transposon-truncated reads.[`get_bc_gdna.py`&`SeqKit`]
-    - Map to the reference genome.[`blastn-short`]
-    - Select best hit and Match insertion site with gene info.[`select_best_hit.py`]
-    - Match barcodes with consistently-inserted genes. [`match_barcode_gene.R`]
+- [Tn-Seq analysis](#1-tn-seq-analysis)
+    - [Pre-process sequencing data.](#11-pre-process-sequencing-data)[`Fastp`]
+    - [Get barcodes and FASTA files with transposon-truncated reads.](#12-get-barcodes-and-fasta-files-with-transposon-truncated-readsonly-genomic-dna-remained)[`get_bc_gdna.py`&`SeqKit`]
+    - [Map to the reference genome.](#13-map-to-the-reference-genome)[`blastn-short`]
+    - [Select best hit and Match insertion site with gene info.](#14-select-best-hit-and-match-insertion-site-with-gene-info)[`select_best_hit.py`]
+    - [Match barcodes with consistently-inserted genes.](#15-match-barcodes-with-consistently-inserted-genes) [`match_barcode_gene.R`]
 
-- BarSeq analysis
+- [BarSeq analysis](#2-barseq-analysis)
     - Pre-process sequencing data.[`Fastp`]
     - Get barcodes.[``]
     - Calculate the count of each barcode.[``]
@@ -197,6 +197,10 @@ This step mainly cantains three steps:
 - Select central insertions.
 
 Run `match_barcode_gene.R` in **Rstudio**.
+
+# 2. BarSeq analysis
+
+
 
 # Example file
 
