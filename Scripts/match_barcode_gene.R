@@ -1,22 +1,19 @@
-#step8:将gDNA和barcode与之前得到的gene_info合并====
+# Merge barcodes with genomic DNA with gene info ====
 library(tidyverse)
-gdna_bc <- read_delim("139/id_bc_gdna_139_all.txt", 
-                      delim = "\t",
-                      col_names = c("qseqid", "barcode", "gDNA"))
-match_gene_info <- read_delim("139/139_get_id_name_insert_gene.txt", 
+readId_barcodes <- read_delim("Example_file/table_id_bc.txt",
+                              delim = "\t",
+                              col_names = c("qseqid", "barcode"))
+gdna_gene_info <- read_delim("Example_file/best_hit_match_gene_res.txt", 
                               col_names = c("qseqid", "sseqid", "insertion_site",
                                             "pident", "length", "begin", "end", "desc",
                                             "gene_ID", "gene_name"))
 
-#因为header比qseqid多了接头信息，所以需要先删除这部分
-#Formt:
-#@DP8480006254TRL1C021R05601207665/1
-gdna_bc$qseqid <- str_match(gdna_bc$qseqid, pattern = "@(.*)")[,2]
-#@A00265:1138:HCFHGDSX5:4:1122:32298:10394 1:N:0:AAAGATAC+TCTGAAAC
-gdna_bc$qseqid <- str_match(gdna_bc$qseqid, pattern = "@(.*) ")[,2]
+# Make the format of column "qseqid" of the two dataframe same.
+#@DP8480006254TRL1C021R05601207665/1 -> DP8480006254TRL1C021R05601207665/1
+#@A00265:1138:HCFHGDSX5:4:1122:32298:10394 1:N:0:AAAGATAC+TCTGAAAC -> A00265:1138:HCFHGDSX5:4:1122:32298:10394
+gdna_bc$qseqid <- str_match(gdna_bc$qseqid, pattern = "@(.*)[ /]")[,2]
 
-#colnames(gdna_bc)[1] <- "qseqid"
-gdna_bc_gene_info <- merge(gdna_bc, match_gene_info, by="qseqid")
+bc_gene_info <- merge(gdna_bc, match_gene_info, by="qseqid")
 
 #step9:同一barcode插入相同基因的不同reads合并====
 #(由于基因存在重复序列导致比对出现重复结果的已经删除，所以剩下的只要gene_id一致即可)

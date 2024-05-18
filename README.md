@@ -9,7 +9,7 @@ The workflow consists of:
     - Get barcodes and FASTA files with transposon-truncated reads.[`get_bc_gdna.py`&`SeqKit`]
     - Map to the reference genome.[`blastn-short`]
     - Select best hit and Match insertion site with gene info.[`select_best_hit.py`]
-    - Match barcodes with consistently-inserted genes. [``]
+    - Match barcodes with consistently-inserted genes. [`match_barcode_gene.R`]
 
 - BarSeq analysis
     - Pre-process sequencing data.[`Fastp`]
@@ -25,7 +25,7 @@ The workflow consists of:
 - SeqKit
 - BLAST
 - Python
-- R, Rstudio
+- R, Rstudio (R packages: `tidyverse`, `rio`, `plyr`)
 - Operating system: Linux
 - SSH tool: finalshell (optional, better to have if using remote server)
 
@@ -35,11 +35,11 @@ The workflow consists of:
 
 This step processes sequencing data through quality control, trimming of adapters using fastp.
 
-`fastp -i Read1.fq.gz -I Read2.fq.gz -o example_read1.fq.gz -O example_read2.fq.gz -h fastp_report.html`
+`fastp -i Read1.fq.gz -I Read2.fq.gz -o example_R1.fq.gz -O example_R2.fq.gz -h fastp_report.html`
 
 Then, combine pair-end sequencing data into one FASTQ file.
 
-`cat example_read1.fq.gz example_rea21.fq.gz > example.fq.gz`
+`cat example_R1.fq.gz example_R2.fq.gz > example.fq.gz`
 
 ## 1.2 Get barcodes and FASTA files with transposon-truncated reads(only genomic DNA remained)
 
@@ -124,7 +124,7 @@ blastn application options:
 | 11 | evalue | expect value |
 | 12 | bitscore | bit score |
 
-## Select best hit and Match insertion site with gene info
+## 1.4 Select best hit and Match insertion site with gene info
 
 1. Select readID(qsedid) with only one best hit. 
 1. Match <u>insertion sites</u> (i.e., **sstart** of the blastn result) with the positional information of genes. 
@@ -179,7 +179,7 @@ For pXAC64, the number of insertions located at:
   intergenic region: 2 (0.250000).
   overlapping region of genes: 0 (0.000000).
 ```
-## 1.4 Match barcodes with consistently-inserted genes
+## 1.5 Match barcodes with consistently-inserted genes
 
 
 
