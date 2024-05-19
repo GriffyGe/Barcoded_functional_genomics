@@ -13,10 +13,8 @@ The workflow consists of:
 
 - [BarSeq analysis](#2-barseq-analysis)
     - Pre-process sequencing data.[`Fastp`]
-    - Get barcodes.[``]
-    - Calculate the count of each barcode.[``]
-    - Merge barcodes with consistently-inserted genes.[``]
-    - Compute strain fitness and gene fitness.[``]
+    - Get barcodes and Calculate the count of each barcode.[`get_bc_count.py`]
+    - Compute strain fitness and gene fitness.[`fitness_calculator.R`]
 
 # Requirements
 
@@ -190,7 +188,7 @@ This step mainly cantains three steps:
     - Type1: A Gene that all reads of a barcode map to.
     - Type2: A Gene that is the primary mapping site of all reads of a barcode.
 
-      **Requirement for primary mapping location:** 
+      **Requirement for primary mapping location[^1]:** 
       1. Matching time >= 10;
       2. Matching percentage >= 75%;
       3. P(Second most frequency mapping location) <= 1/8 * P(Primary mapping location)
@@ -200,7 +198,42 @@ Run `match_barcode_gene.R` in **Rstudio**.
 
 # 2. BarSeq analysis
 
+## 2.1 Pre-process sequencing data
 
+See [1.1](#11-pre-process-sequencing-data)
+
+## 2.2 Get barcodes and Calculate the count of each barcode
+
+This step identifies barcode from BarSeq sequencing data, and then calculate the count of each barcode.
+
+**Helper Message**
+
+Run `python .\Scripts\get_bc_count.py -h` on Linux terminal
+
+Helper massage is shown:
+
+```
+usage: get_bc_count.py [-h] -i  -o_bc  -o_count
+Identify barcode and genomic DNA.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -i , --input          Filename, BarSeq sequencing data processed by fastp.
+  -o_bc , --output_barcode
+                        Filename, an output table of readID and barcode.
+  -o_count , --output_count
+                        Filename, an output table of barcode and counts
+```
+
+Run `get_bc_count.py` on examlple (**Linux** terminal)
+
+`python .\Scripts\get_bc_count.py -i .\Example_file\2.2_Get_barcode_count\test.fq.gz -o_bc .\Example_file\2.2_Get_barcode_count\readid_barcode.txt -o_count .\Example_file\2.2_Get_barcode_count\barcode_count.txt`
+
+## 2.3 Compute strain fitness and gene fitness
+
+This step merges barcode counts result from BarSeq sequencing data with Tn-Seq matching result. Finally, the strain fitness and gene fitness can be computed according to the abundance of each barcode and its inserted gene.
+
+Run `fitness_calculator.R` in **Rstudio**.
 
 # Example file
 
@@ -209,4 +242,3 @@ An example file folder can be found in [<u>here</u>](./Example_file/).
 # Reference
 
 [^1]: Wetmore, K. M. et al. Rapid quantification of mutant fitness in diverse bacteria by sequencing randomly bar-coded transposons. mBio 6, e00306-00315 (2015).
-
