@@ -13,8 +13,8 @@ The workflow consists of:
 
 - [BarSeq analysis](#2-barseq-analysis)
     - Pre-process sequencing data.[`Fastp`]
-    - Get barcodes and Calculate the count of each barcode.[`get_bc_count.py`]
-    - Compute strain fitness and gene fitness.[`fitness_calculator.R`]
+    - [Get barcodes and Calculate the count of each barcode.](#22-get-barcodes-and-calculate-the-count-of-each-barcode)[`get_bc_count.py`]
+    - [Compute strain fitness and gene fitness.](#23-compute-strain-fitness-and-gene-fitness)[`fitness_calculator.R`]
 
 # Requirements
 
